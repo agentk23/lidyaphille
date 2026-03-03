@@ -1,48 +1,78 @@
 "use client";
 
 import { useRouter, usePathname } from "next/navigation";
-import { useEffect } from "react";
+import { useEffect, useRef, useCallback } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
 
 export const SmartBackButton = () => {
   const router = useRouter();
   const pathname = usePathname();
+  const timerRef = useRef<NodeJS.Timeout | null>(null);
+  const longPressTriggered = useRef(false);
 
   const isHome = pathname === "/";
-  
-  useEffect(() => {
-    document.body.style.transform = "";
-    document.body.style.transition = "";
-  }, [pathname]);
 
-  const handleAction = () => {
+  const handleAction = useCallback(() => {
     if (isHome) {
-      window.scrollTo({ top: 0, behavior: "smooth" });
+      // Do nothing for a short press on the home page
+      return;
     } else {
-      document.body.style.transition = "transform 1s cubic-bezier(0.65, 0, 0.35, 1)";
+      document.body.style.transition =
+        "transform 1s cubic-bezier(0.65, 0, 0.35, 1)";
       document.body.style.transform = "translateY(100vh)";
       setTimeout(() => {
         const segments = pathname.split("/").filter(Boolean);
-        const parentPath = segments.length > 1 ? `/${segments.slice(0, -1).join("/")}` : "/";
+        const parentPath =
+          segments.length > 1
+            ? `/${segments.slice(0, -1).join("/")}`
+            : "/";
         router.push(parentPath);
       }, 1000);
+    }
+  }, [isHome, pathname, router]);
+
+  useEffect(() => {
+    document.body.style.transform = "";
+    document.body.style.transition = "";
+
+    return () => {
+      if (timerRef.current) {
+        clearTimeout(timerRef.current);
+      }
+    };
+  }, [pathname]);
+
+  const handlePressStart = () => {
+    longPressTriggered.current = false;
+    timerRef.current = setTimeout(() => {
+      longPressTriggered.current = true;
+      router.push("/studio");
+    }, 3000); // 3-second long press
+  };
+
+  const handlePressEnd = () => {
+    if (timerRef.current) {
+      clearTimeout(timerRef.current);
+    }
+    if (!longPressTriggered.current) {
+      handleAction();
     }
   };
 
   return (
     <motion.button
       initial={{ opacity: 0, scale: 0.8, y: 20 }}
-      animate={{ opacity:  1, scale: 1, y: 0 }}
-      whileHover={!isHome ? { scale: 1.1, rotate: -3 } : {}} // Subtle tilt on hover
-      whileTap={!isHome ? { scale: 0.9 } : {}}
-      onClick={handleAction}
-      disabled={isHome}
+      animate={{ opacity: 1, scale: 1, y: 0 }}
+      whileHover={{ scale: 1.1, rotate: -3 }} // Subtle tilt on hover
+      whileTap={{ scale: 0.9 }}
+      onMouseDown={handlePressStart}
+      onMouseUp={handlePressEnd}
+      onTouchStart={handlePressStart}
+      onTouchEnd={handlePressEnd}
       // Positioned in the bottom-left corner
-      className={`fixed bottom-8 left-8 z-50 p-2 focus:outline-none ${
-        isHome ? "cursor-not-allowed grayscale" : "cursor-pointer"
-      }`}
-      aria-label={isHome ? "Scroll to top" : "Go back"}
+      className="fixed bottom-8 left-8 z-50 p-2 focus:outline-none cursor-pointer"
+      aria-label={isHome ? "Long press to go to studio" : "Go back"}
     >
       <div className="relative w-20 h-20">
         <Image
@@ -50,7 +80,7 @@ export const SmartBackButton = () => {
           alt="Navigation Icon"
           fill
           loading="eager"
-          className={`object-contain transition-transform duration-500 ease-in-out`}
+          className="object-contain transition-transform duration-500 ease-in-out"
           priority
         />
       </div>
