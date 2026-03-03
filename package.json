@@ -6,18 +6,27 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "preinstall": "npx only-allow pnpm"
   },
   "dependencies": {
-    "@sanity/image-url": "^1.2.0",
-    "@sanity/vision": "^4.22.0",
+    "@sanity/image-url": "1",
+    "@sanity/vision": "4",
     "framer-motion": "^12.34.3",
     "next": "16.1.6",
     "next-sanity": "^11.6.12",
     "react": "19.2.3",
     "react-dom": "19.2.3",
-    "sanity": "^4.22.0",
-    "styled-components": "^6.3.11"
+    "sanity": "4",
+    "styled-components": "6",
+    "@tailwindcss/postcss": "^4",
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "eslint": "^9",
+    "eslint-config-next": "16.1.6",
+    "tailwindcss": "^4",
+    "typescript": "^5"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
@@ -28,5 +37,9 @@
     "eslint-config-next": "16.1.6",
     "tailwindcss": "^4",
     "typescript": "^5"
+  },
+  "engines": {
+    "npm": "please-use-pnpm",
+    "pnpm": ">=8.0.0"
   }
 }

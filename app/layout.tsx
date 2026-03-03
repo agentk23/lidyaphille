@@ -1,10 +1,10 @@
 import "./globals.css";
 import { NavigationProvider } from "@/context/NavigationContext";
 import { SmartBackButton } from "@/components/ui/SmartBackButton";
-import { Rubik_Glitch } from "next/font/google";
+import {  Orbitron } from "next/font/google";
 
-const rubikGlitch = Rubik_Glitch({
-  weight: "400",
+const rubikGlitch = Orbitron({
+  weight: "700",
   subsets: ["latin" ],
 });
 

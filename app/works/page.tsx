@@ -34,9 +34,9 @@ export default function WorksPage() {
       <div className="relative z-10 flex flex-col md:flex-row gap-10 w-full max-w-7xl px-8">
         <div className="flex-1 min-w-0">
           <Link href="/works/traditional" className="block h-full w-full" onClick={(e) => handleNavigation(e, "/works/traditional")}>
-            <ImageMenuContainer className="h-[450px]">
+            <ImageMenuContainer className="h-[40vh] md:h-[50vh]">
               <div className="flex flex-col gap-6 h-full items-center justify-center">
-                <h2 className="text-4xl font-bold text-black uppercase tracking-widest drop-shadow-lg">
+                <h2 className="text-2xl md:text-4xl font-bold text-black uppercase tracking-widest drop-shadow-lg">
                   Traditional
                 </h2>
                 <div className="relative w-48 h-48 rounded-lg overflow-hidden shadow-lg border border-white/20">
@@ -53,9 +53,9 @@ export default function WorksPage() {
         </div>
         <div className="flex-1 min-w-0">
           <Link href="/works/digital" className="block h-full w-full" onClick={(e) => handleNavigation(e, "/works/digital")}>
-            <ImageMenuContainer className="h-[450px]">
+            <ImageMenuContainer className="h-[40vh] md:h-[50vh]">
               <div className="flex flex-col gap-6 h-full items-center justify-center">
-                <h2 className="text-4xl font-bold text-black uppercase tracking-widest drop-shadow-lg">
+                <h2 className="text-2xl md:text-4xl font-bold text-black uppercase tracking-widest drop-shadow-lg">
                   Digital
                 </h2>
                 <div className="relative w-48 h-48 rounded-lg overflow-hidden shadow-lg border border-white/20">
@@ -72,9 +72,9 @@ export default function WorksPage() {
         </div>
         <div className="flex-1 min-w-0">
           <Link href="/works/animation" className="block h-full w-full" onClick={(e) => handleNavigation(e, "/works/animation")}>
-            <ImageMenuContainer className="h-[450px]">
+            <ImageMenuContainer className="h-[40vh] md:h-[50vh]">
               <div className="flex flex-col gap-6 h-full items-center justify-center">
-                <h2 className="text-4xl font-bold text-black uppercase tracking-widest drop-shadow-lg">
+                <h2 className="text-2xl md:text-4xl font-bold text-black uppercase tracking-widest drop-shadow-lg">
                   Animation
                 </h2>
                 <div className="relative w-48 h-48 rounded-lg overflow-hidden shadow-lg border border-white/20">

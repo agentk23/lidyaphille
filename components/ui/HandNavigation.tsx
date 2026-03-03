@@ -54,7 +54,7 @@ export const InteractiveNav = () => {
         >
           {/* The Text Section */}
           <span
-            className={` md:text-7xl transition-colors   ${
+            className={` text-4xl md:text-7xl transition-colors   ${
               activeIndex === index ? "text-black " : "text-gray-400"
             }`}
           >

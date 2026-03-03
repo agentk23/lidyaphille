@@ -22,9 +22,8 @@ export default function Home() {
   ];
   return (
     <div className="relative flex min-h-screen items-center justify-center bg-zinc-50 overflow-hidden">
-      {/* Background Container */}
       <div className="absolute inset-0 flex items-center justify-center z-0 pointer-events-none">
-        <div className="relative w-[70vw] h-[40vh] shadow-2xl rounded-3xl">
+        <div className="relative w-[90vw] h-[40vh] sm:w-[90vw] sm:h-[40vh] shadow-2xl rounded-3xl opacity-80">
           <Image
             src="/2ndbg.jpg"
             alt="Page Background"
@@ -35,11 +34,11 @@ export default function Home() {
         </div>
       </div>
       {/* 3 Pictogram Mini-Menu */}
-      <div className="fixed top-16 right-16 z-50 flex gap-8">
+      <div className="absolute top-4 right-4 z-50 flex gap-4 md:top-16 md:right-16 md:gap-8">
         {socials.map((item) => (
           <div
             key={item.label}
-            className="w-10 h-10 scale-120 flex items-center justify-center cursor-pointer hover:rotate-6 hover:scale-140 duration-300"
+            className="w-8 h-8 scale-100 flex items-center justify-center cursor-pointer hover:rotate-6 hover:scale-110 duration-300 md:w-10 md:h-10 md:scale-120 md:hover:scale-140"
           >
             <a href={item.link}> 
 
@@ -54,7 +53,7 @@ export default function Home() {
           </div>
         ))}
       </div>
-      <main className="relative z-10 flex min-h-screen w-full max-w-3xl flex-col items-center justify-center  py-32 px-16  sm:items-start">
+      <main className="relative z-10 flex min-h-screen w-full max-w-3xl flex-col items-center justify-center py-16 px-4 sm:py-32 sm:px-16 sm:items-start">
         <div className="relative w-full h-[8vh] -bottom-3 overflow-hidden opacity-90">
           <Image src="/luizaa.png" alt="Top" fill className="object-cover" />
         </div>

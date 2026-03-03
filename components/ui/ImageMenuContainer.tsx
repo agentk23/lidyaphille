@@ -9,7 +9,7 @@ import { usePathname } from "next/navigation";
 
 export const ImageMenuContainer = ({
   children,
-  className = "h-165",
+  className,
 }: {
   children: React.ReactNode;
   className?: string;
@@ -21,7 +21,7 @@ export const ImageMenuContainer = ({
     <motion.div
       whileHover={isHome ? {} : { scale: 1.01 }}
       transition={{ duration: 0.4 }}
-      className={`relative w-full max-w-full max-h-full mx-auto overflow-hidden ${className}`}
+      className={`relative w-full max-w-full mx-auto overflow-hidden ${className || 'min-h-[50vh] md:min-h-[70vh]'}`}
     >
       {/* 1. The Background Image Layer */}
       <div className="absolute inset-0 z-1">
@@ -37,7 +37,7 @@ export const ImageMenuContainer = ({
       </div>
 
       {/* 2. The Menu Content Layer */}
-      <div className="relative z-2 h-full flex flex-col justify-center md:px-20">
+      <div className="relative z-2 h-full flex flex-col justify-center items-center md:px-20 py-8 md:py-16">
         {children}
       </div>
     </motion.div>

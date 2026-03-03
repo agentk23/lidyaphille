@@ -71,10 +71,10 @@ export const SmartBackButton = () => {
       onTouchStart={handlePressStart}
       onTouchEnd={handlePressEnd}
       // Positioned in the bottom-left corner
-      className="fixed bottom-8 left-8 z-50 p-2 focus:outline-none cursor-pointer"
+      className="fixed bottom-4 left-4 z-50 p-2 focus:outline-none cursor-pointer md:bottom-8 md:left-8"
       aria-label={isHome ? "Long press to go to studio" : "Go back"}
     >
-      <div className="relative w-20 h-20">
+      <div className="relative w-1 h-12 md:w-20 md:h-20">
         <Image
           src="/back-hand.png"
           alt="Navigation Icon"
