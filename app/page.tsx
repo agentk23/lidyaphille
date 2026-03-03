@@ -1,4 +1,3 @@
-import { SmartBackButton } from "@/components/ui/SmartBackButton";
 import { ImageMenuContainer } from "../components/ui/ImageMenuContainer";
 import Image from "next/image";
 import { InteractiveNav } from "@/components/ui/HandNavigation";
@@ -6,8 +5,8 @@ import { InteractiveNav } from "@/components/ui/HandNavigation";
 export default function Home() {
   const socials = [
     {
-      label: "Instagram",
-      link: "https://www.instagram.com/lidya_phille/",
+      label: "Linktree",
+      link: "https://linktr.ee/sadlilyfly",
       imgHref: "/lnktree.png",
     },
     {
@@ -25,7 +24,7 @@ export default function Home() {
     <div className="relative flex min-h-screen items-center justify-center bg-zinc-50 overflow-hidden">
       {/* Background Container */}
       <div className="absolute inset-0 flex items-center justify-center z-0 pointer-events-none">
-        <div className="relative w-[70vw] h-[45vh] shadow-2xl rounded-3xl backdrop-blur-xs blur-xs">
+        <div className="relative w-[70vw] h-[40vh] shadow-2xl rounded-3xl">
           <Image
             src="/2ndbg.jpg"
             alt="Page Background"
