@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/immutability */
 "use client";
-import { useState, useEffect, useCallback } from "react";
+import { useEffect, useCallback } from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
@@ -12,17 +12,16 @@ import { useRouter } from "next/navigation";
 export const InteractiveNav = () => {
   const { sections, activeIndex, setActiveIndex } = useNavigation();
   const SECTIONS = sections.map((section) => section.label);
-  const [activeSection, setActiveSection] = useState(0);
   const router = useRouter();
   
   // 1. Handle Keyboard Navigation
   const handleKeyDown = useCallback((e: KeyboardEvent) => {
     if (e.key === "ArrowDown") {
-      setActiveSection((prev) => (prev < SECTIONS.length - 1 ? prev + 1 : 0));
+      setActiveIndex((prev) => (prev < sections.length - 1 ? prev + 1 : 0));
     } else if (e.key === "ArrowUp") {
-      setActiveSection((prev) => (prev > 0 ? prev - 1 : SECTIONS.length - 1));
+      setActiveIndex((prev) => (prev > 0 ? prev - 1 : sections.length - 1));
     }
-  }, [SECTIONS.length]);
+  }, [sections.length, setActiveIndex]);
 
   useEffect(() => {
     window.addEventListener("keydown", handleKeyDown);

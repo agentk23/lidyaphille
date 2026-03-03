@@ -1,6 +1,6 @@
 "use client";
 
-import React, { createContext, useContext, useState, ReactNode } from "react";
+import React, { createContext, useContext, useState, ReactNode, Dispatch, SetStateAction } from "react";
 
 // Define the shape of a single navigation item
 export interface NavItem {
@@ -12,7 +12,7 @@ export interface NavItem {
 interface NavigationContextType {
   sections: NavItem[];
   activeIndex: number;
-  setActiveIndex: (index: number) => void;
+  setActiveIndex: Dispatch<SetStateAction<number>>;
 }
 
 const NavigationContext = createContext<NavigationContextType | undefined>(

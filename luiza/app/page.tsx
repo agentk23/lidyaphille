@@ -25,7 +25,7 @@ export default function Home() {
     <div className="relative flex min-h-screen items-center justify-center bg-zinc-50 overflow-hidden">
       {/* Background Container */}
       <div className="absolute inset-0 flex items-center justify-center z-0 pointer-events-none">
-        <div className="relative w-[50vw] h-[45vh] shadow-2xl rounded-3xl blur-xs">
+        <div className="relative w-[70vw] h-[45vh] shadow-2xl rounded-3xl backdrop-blur-xs blur-xs">
           <Image
             src="/2ndbg.jpg"
             alt="Page Background"
@@ -56,13 +56,13 @@ export default function Home() {
         ))}
       </div>
       <main className="relative z-10 flex min-h-screen w-full max-w-3xl flex-col items-center justify-center  py-32 px-16  sm:items-start">
-        <div className="relative w-full h-[5vh] -bottom-3 overflow-hidden">
+        <div className="relative w-full h-[8vh] -bottom-3 overflow-hidden opacity-90">
           <Image src="/luizaa.png" alt="Top" fill className="object-cover" />
         </div>
         <ImageMenuContainer>
           <InteractiveNav />
         </ImageMenuContainer>
-        <div className="relative w-full h-[5vh] -top-6  rotate-y-180 rotate-x-180 overflow-hidden">
+        <div className="relative w-full h-[8vh] -top-6  rotate-y-180 rotate-x-180 overflow-hidden">
           <Image src="/luizaa.png" alt="Bottom" fill className="object-cover" />
         </div>
       </main>

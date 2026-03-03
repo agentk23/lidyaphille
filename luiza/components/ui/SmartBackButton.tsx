@@ -23,7 +23,9 @@ export const SmartBackButton = () => {
       document.body.style.transition = "transform 1s cubic-bezier(0.65, 0, 0.35, 1)";
       document.body.style.transform = "translateY(100vh)";
       setTimeout(() => {
-        router.push("/");
+        const segments = pathname.split("/").filter(Boolean);
+        const parentPath = segments.length > 1 ? `/${segments.slice(0, -1).join("/")}` : "/";
+        router.push(parentPath);
       }, 1000);
     }
   };
