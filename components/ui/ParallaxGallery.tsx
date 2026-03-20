@@ -51,7 +51,7 @@ export const ParallaxGallery = ({
         </h1>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-16 pb-32">
-          {images.map((image, index) => (
+          {images?.map((image, index) => (
             <ParallaxImage
               key={image._id}
               src={image.imageUrl}

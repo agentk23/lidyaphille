@@ -53,14 +53,14 @@ export default function Home() {
         ))}
       </div>
       <main className="relative flex max-h-screen w-full max-w-3xl flex-col items-center justify-center py-16 px-4 sm:py-32 sm:px-16  sm:items-start">
-        <div className="relative w-full h-[8vh] text-black sm:opacity-0 md:opacity-90 text-center text-xl sm:text-4xl blur-xs opacity-90 top-13 md:top-4">
+        <div className="relative w-full h-[8vh] text-black text-center text-xl sm:text-xl md:text-3xl lg:text-3xl xl:text-4xl blur-xs opacity-0 sm:opacity-90 top-13 sm:top-15  md:top-7 lg:top-5 xl:top-4">
           <h1>Luiza Pomohaci</h1>
         </div>
 
-        <ImageMenuContainer>
+        <ImageMenuContainer className="min-h-[50vh] xl:min-h-[67vh] lg:min-h-[60vh] sm:max-h-[50vh] md:min-h-[60vh]  max-w-[80vw] sm:max-w-[50vw] md:max-w-[60vw] lg:max-w-[50vw] xl:min-w-[30vw]">
           <InteractiveNav />
         </ImageMenuContainer>
-        <div className="relative w-full z-0 h-[8vh] rotate-y-180 rotate-x-180 sm:opacity-0 md:opacity-90 text-black text-center text-xl md:text-4xl blur-xs opacity-90  bottom-14 sm:bottom-4 sm:text-4xl  ">
+        <div className="relative w-full z-0 h-[8vh] rotate-y-180 rotate-x-180  opacity-0 sm:opacity-90 text-black text-center text-xl sm:text-xl md:text-3xl lg:text-3xl xl:text-4xl blur-xs bottom-15 sm:bottom-15 md:bottom-10 lg:bottom-9 xl:bottom-5">
           <h1>Luiza Pomohaci</h1>
         </div>
       </main>

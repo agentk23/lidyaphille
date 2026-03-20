@@ -15,13 +15,14 @@ export const ImageMenuContainer = ({
   className?: string;
 }) => {
   const pathname = usePathname();
+  const cname = className;
   const isHome = pathname === "/";
 
   return (
     <motion.div
       whileHover={isHome ? {} : { scale: 1.0051 }}
       transition={{ duration: 0.7 }}
-      className={`  relative h-full w-full mx-auto z-10 min-h-[40vh]  xl:min-h-[67vh] lg:min-h-[60vh] sm:min-h-[90vh] md:min-h-[50vh]  sm:max-w-[30vw] md:max-w-[60vw] lg:max-w-[80vw] xl:min-w-[20vw]`}
+      className={` ${cname} + relative h-full w-full mx-auto z-10 `}
     >
       {/* 1. The Background Image Layer */}
       <div className="absolute mx-auto inset-2 z-1 ">

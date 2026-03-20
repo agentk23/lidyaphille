@@ -5,9 +5,9 @@ import { Suspense } from "react";
 
 export function generateStaticParams() {
   return [
-    { category: "traditional" },
-    { category: "digital" },
-    { category: "animation" },
+    { category: "Traditional" },
+    { category: "Digital" },
+    { category: "Animation" },
   ];
 }
 

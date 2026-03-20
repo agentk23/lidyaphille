@@ -46,7 +46,7 @@ export const InteractiveNav = () => {
   }, []);
 
   return (
-    <nav className="flex flex-col sm:gap-5 md:gap-10 lg:gap-20 gap-10 z-10  lg:p-10 relative w-fit top-11 sm:top-1 md:top-4 lg:top-5">
+    <nav className="flex flex-col sm:gap-8 md:gap-12 lg:gap-12 xl:gap-15 gap-10 z-10  lg:p-10 relative w-fit top-20 sm:top-23 md:top-10 lg:top-3 xl:top-10">
       {SECTIONS.map((section, index) => (
         <div
           key={section}
@@ -55,7 +55,7 @@ export const InteractiveNav = () => {
         >
           {/* The Text Section */}
           <span
-            className={`text-2xl lg:text-4xl sm:text-xs md:text-2xl xl:text-5xl  transition-shadow  ${
+            className={`text-2xl lg:text-4xl sm:text-2xl md:text-4xl xl:text-5xl  transition-shadow  ${
               activeIndex === index
                 ? "text-black font-stretch-50% "
                 : "text-black rotate-2 shadow-2xs"
