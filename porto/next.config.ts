@@ -12,7 +12,8 @@ const nextConfig: NextConfig = {
         pathname: "/images/**",
       },
     ],
-  }
+  },
+  cacheComponents: true,
 };
 
 export default nextConfig;
