@@ -12,7 +12,7 @@ export const SmartBackButton = () => {
   const longPressTriggered = useRef(false);
 
   const isHome = pathname === "/";
- 
+  const isDown = (pathname !== "/works/traditional" && pathname !== "/works/digital" && pathname !== "/works/animation") ? true : false;
 
   const handleAction = useCallback(() => {
     if (isHome) {
@@ -33,12 +33,13 @@ export const SmartBackButton = () => {
   useEffect(() => {
     document.body.style.transform = "";
     document.body.style.transition = "";
+    
+
 
     return () => {
       if (timerRef.current) {
         clearTimeout(timerRef.current);
       }
-     
       
     };
   }, [pathname]);
@@ -75,7 +76,11 @@ export const SmartBackButton = () => {
       onTouchStart={handlePressStart}
       onTouchEnd={handlePressEnd}
       // Positioned in the bottom-left corner
-      className="fixed bottom-4 left-4 z-100 p-2 focus:outline-none cursor-pointer md:bottom-8 md:left-8"
+      className={
+        isDown
+          ? "fixed bottom-4 left-4 z-100 p-2 focus:outline-none cursor-pointer md:bottom-8 md:left-4"
+          : "fixed top-4 z-100 p-2  cursor-pointer md:top-4 md:left-4 "
+      }
       aria-label={isHome ? "Long press to go to studio" : "Go back"}
     >
       <div className="relative w-16 h-18 md:h-20 md:w-20 sm:h-20  sm:w-20 ">

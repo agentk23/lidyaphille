@@ -57,7 +57,7 @@ export default function Home() {
           <h1>Luiza Pomohaci</h1>
         </div>
 
-        <ImageMenuContainer className="min-h-[50vh] xl:min-h-[67vh] lg:min-h-[60vh] sm:max-h-[50vh] md:min-h-[60vh]  max-w-[80vw] sm:max-w-[50vw] md:max-w-[60vw] lg:max-w-[50vw] xl:min-w-[30vw]">
+        <ImageMenuContainer className="min-h-[50vh] xl:min-h-[80vh] lg:min-h-[70vh] sm:max-h-[50vh] md:min-h-[70vh]  max-w-[60vw] sm:max-w-[55vw] md:max-w-[55vw] lg:max-w-[50vw] xl:min-w-[30vw]">
           <InteractiveNav />
         </ImageMenuContainer>
         <div className="relative w-full z-0 h-[8vh] rotate-y-180 rotate-x-180  opacity-0 sm:opacity-90 text-black text-center text-xl sm:text-xl md:text-3xl lg:text-3xl xl:text-4xl blur-xs bottom-15 sm:bottom-15 md:bottom-10 lg:bottom-9 xl:bottom-5">

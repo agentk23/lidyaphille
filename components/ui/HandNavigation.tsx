@@ -46,7 +46,7 @@ export const InteractiveNav = () => {
   }, []);
 
   return (
-    <nav className="flex flex-col sm:gap-8 md:gap-12 lg:gap-12 xl:gap-15 gap-10 z-10  lg:p-10 relative w-fit top-20 sm:top-23 md:top-10 lg:top-3 xl:top-10">
+    <nav className="flex flex-col sm:gap-8 md:gap-12 lg:gap-12 xl:gap-15 gap-10 z-10  lg:p-10 relative w-fit top-10 sm:top-10 md:top-5 lg:top-5 xl:top-10">
       {SECTIONS.map((section, index) => (
         <div
           key={section}

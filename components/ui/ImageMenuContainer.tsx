@@ -20,8 +20,8 @@ export const ImageMenuContainer = ({
 
   return (
     <motion.div
-      whileHover={isHome ? {} : { scale: 1.0051 }}
-      transition={{ duration: 0.7 }}
+      whileHover={isHome ? {} : { scale: 1.01 }}
+      transition={{ duration: 0.5 }}
       className={` ${cname} + relative h-full w-full mx-auto z-10 `}
     >
       {/* 1. The Background Image Layer */}
@@ -38,7 +38,7 @@ export const ImageMenuContainer = ({
       </div>
 
       {/* 2. The Menu Content Layer */}
-      <div className="relative z-10 h-full flex flex-col justify-center items-center px-4 sm:top-1 md:top-10 lg:top-7 md:px-20 py-8 md:py-16">
+      <div className="relative z-10 h-full flex flex-col justify-center items-center px-4 sm:top-1 md:top-10 lg:top-7 md:px-15 py-8 md:py-12">
         {children}
       </div>
     </motion.div>
