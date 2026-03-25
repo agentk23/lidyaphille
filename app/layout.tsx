@@ -3,8 +3,9 @@ import { NavigationProvider } from "@/context/NavigationContext";
 import { SmartBackButton } from "@/components/ui/SmartBackButton";
 import localFont from "next/font/local";
 
-const lFont = localFont({
-  src: "./fonts/scientific-graphics.regular.otf",
+
+const rFont = localFont({
+  src: "./fonts/DEADCRT.ttf",
   variable: "--font-scientific",
   display: "swap",
 });
@@ -23,7 +24,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      <body className={lFont.className}>
+      <body className={rFont.className}>
         <NavigationProvider initialSections={mockSections}>
           {children}
           <SmartBackButton />
