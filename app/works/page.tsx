@@ -31,22 +31,22 @@ export default function WorksPage() {
       </div>
 
       {/* Content */}
-      <div className="relative z-10 flex flex-col lg:flex-row  gap-8 w-full max-w-full px-20 lg:bg-black justify-center align-center items-center">
-        <div className="flex-1  sm:min-w-[23vw] lg:min-w-[30vw] grow-0 lg:ml-30">
+      <div className="relative z-10 flex flex-col  xl:flex-row   gap-8 w-full max-w-full px-20 xl:bg-black justify-center align-center items-center">
+        <div className="flex-1  sm:min-w-[23vw] lg:min-w-[30vw] grow-0 ">
           <Link
             href="/works/traditional"
             className="block h-full w-full"
             onClick={(e) => handleNavigation(e, "/works/traditional")}
           >
-            <ImageMenuContainer className="h-[40vh] md:h-[50vh] md:p-15 sm:p-20 p-16">
-              <div className="flex flex-col gap-6 h-full items-center">
-                <h4 className="absolute  -top-1 text-xl md:text-xl sm:text-xl lg:text-xl  font-bold text-black  uppercase tracking-widest drop-shadow-lg">
+            <ImageMenuContainer className="h-[40vh] md:h-[50vh]">
+              <div className="flex flex-col gap-6 h-full items-center align-middle justify-center md:p-15 sm:p-20 p-16">
+                <h2 className="absolute top-15 text-xl md:text-2xl  font-bold text-black uppercase tracking-widest drop-shadow-lg">
                   Traditional
-                </h4>
-                <div className="relative w-48 h-48 rounded-lg  shadow-lg border border-white/20 ">
+                </h2>
+                <div className="relative w-100 h-64 rounded-lg overflow-hidden shadow-lg border border-white/20">
                   <Image
-                    src="/2ndbg.jpg"
-                    alt="Traditional Placeholder"
+                    src="/trad.png"
+                    alt="Digital Placeholder"
                     fill
                     className="object-cover"
                   />
@@ -63,12 +63,12 @@ export default function WorksPage() {
           >
             <ImageMenuContainer className="h-[40vh] md:h-[50vh]">
               <div className="flex flex-col gap-6 h-full items-center justify-center md:p-15 sm:p-20 p-16">
-                <h2 className="absolute top-14 text-xl md:text-xl sm:text-xl lg:text-xl  font-bold text-black uppercase tracking-widest drop-shadow-lg">
+                <h2 className="absolute top-15 text-xl md:text-2xl  font-bold text-black uppercase tracking-widest drop-shadow-lg">
                   Digital
                 </h2>
-                <div className="relative w-48 h-48 rounded-lg overflow-hidden shadow-lg border border-white/20">
+                <div className="relative w-100 h-64 rounded-lg overflow-hidden shadow-lg border border-white/20">
                   <Image
-                    src="/2ndbg.jpg"
+                    src="/digital.png"
                     alt="Digital Placeholder"
                     fill
                     className="object-cover"
@@ -78,7 +78,7 @@ export default function WorksPage() {
             </ImageMenuContainer>
           </Link>
         </div>
-        <div className="flex-1 min-w-[23vw] sm:min-w-[20vw] lg:min-w-[30vw] grow-0 lg:mr-30 ">
+        <div className="flex-1 min-w-[23vw] sm:min-w-[20vw] lg:min-w-[30vw] grow-0 ">
           <Link
             href="/works/animation"
             className="block h-full w-full"
@@ -87,12 +87,12 @@ export default function WorksPage() {
             {/* upon clicking on animation, use https://www.sanity.io/docs/media-library/working-with-video#a902fd2a81f7 to get video resources */}
             <ImageMenuContainer className="h-[40vh] md:h-[50vh]">
               <div className="flex flex-col gap-6 h-full items-center justify-center md:p-15 sm:p-20 p-16 ">
-                <h2 className="absolute top-15 text-xl md:text-xl sm:text-xl lg:text-xl font-bold text-black uppercase tracking-widest drop-shadow-lg">
+                <h2 className="absolute top-15 md:text-2xl text-xl font-bold text-black uppercase tracking-widest drop-shadow-lg">
                   Animation
                 </h2>
-                <div className="relative w-48 h-48 rounded-lg overflow-hidden shadow-lg border border-white/20">
+                <div className="relative w-100 h-64 rounded-lg overflow-hidden shadow-lg border border-white/20">
                   <Image
-                    src="/2ndbg.jpg"
+                    src="/anim.gif"
                     alt="Animation Placeholder"
                     fill
                     className="object-cover"

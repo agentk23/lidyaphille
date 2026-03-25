@@ -51,11 +51,11 @@ export const InteractiveNav = () => {
         <div
           key={section}
           onMouseEnter={() => setActiveIndex(index)} // 2. Handle Hover
-          className="relative cursor-pointer "
+          className="relative cursor-pointer top-15 left-5 md:left-10 lg:left-5 "
         >
           {/* The Text Section */}
           <span
-            className={`text-2xl lg:text-4xl sm:text-2xl md:text-4xl xl:text-5xl  transition-shadow  ${
+            className={` text-2xl sm:text-3xl md:text-3xl lg:text-5xl  transition-shadow  ${
               activeIndex === index
                 ? "text-black font-stretch-50% "
                 : "text-black rotate-2 shadow-2xs"
