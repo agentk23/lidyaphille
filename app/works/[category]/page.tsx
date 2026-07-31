@@ -1,14 +1,10 @@
-import { ParallaxGallery } from "@/components/ui/ParallaxGallery";
+import { ParallaxGallery } from "@/components/ParallaxGallery";
 import { getWorkImages } from "@/lib/sanity";
+import { CATEGORIES } from "@/lib/categories";
 import { Suspense } from "react";
 
-
 export function generateStaticParams() {
-  return [
-    { category: "Traditional" },
-    { category: "Digital" },
-    { category: "Animation" },
-  ];
+  return CATEGORIES.map(({ slug }) => ({ category: slug }));
 }
 
 function Loading() {
@@ -17,8 +13,7 @@ function Loading() {
 
 async function Gallery({ category }: { category: string }) {
   const images = await getWorkImages(category);
-  
-  
+
   return <ParallaxGallery category={category} images={images} />;
 }
 
@@ -28,8 +23,7 @@ export default async function CategoryPage({
   params: Promise<{ category: string }>;
 }) {
   const { category } = await params;
- 
-  
+
   return (
     <Suspense fallback={<Loading />}>
       <Gallery category={category} />

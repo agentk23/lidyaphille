@@ -1,8 +1,12 @@
 import "./globals.css";
+import React from "react";
+import type { Metadata, Viewport } from "next";
 import { NavigationProvider } from "@/context/NavigationContext";
-import { SmartBackButton } from "@/components/ui/SmartBackButton";
+import { TransitionProvider } from "@/context/TransitionContext";
+import { SmartBackButton } from "@/components/SmartBackButton";
+import { NAV_SECTIONS } from "@/lib/navigation";
 import localFont from "next/font/local";
-
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 const rFont = localFont({
   src: "./fonts/DEADCRT.ttf",
@@ -10,11 +14,16 @@ const rFont = localFont({
   display: "swap",
 });
 
-const mockSections = [
-  { id: "1", label: "Works", path: "/works" },
-  { id: "2", label: "CV", path: "/about" },
-  { id: "3", label: "Contact", path: "/contact" },
-];
+export const metadata: Metadata = {
+  title: "Luiza Pomohaci — Art Portfolio",
+  description:
+    "Traditional art, digital art, and animation by Luiza Pomohaci.",
+};
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+};
 
 export default function RootLayout({
   children,
@@ -23,12 +32,14 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <body className={rFont.className}>
-        <NavigationProvider initialSections={mockSections}>
-          {children}
-          <SmartBackButton />
+        <NavigationProvider initialSections={NAV_SECTIONS}>
+          <TransitionProvider>
+            {children}
+            <SmartBackButton />
+          </TransitionProvider>
         </NavigationProvider>
+        <SpeedInsights />
       </body>
     </html>
   );

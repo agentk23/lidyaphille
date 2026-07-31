@@ -1,6 +1,7 @@
 // sanity/schemaTypes/image.ts
 
 import {defineField, defineType} from 'sanity'
+import {CATEGORIES} from '../../lib/categories'
 
 export const imageType = defineType({
   name: 'workImage',
@@ -27,11 +28,7 @@ export const imageType = defineType({
       title: 'Category',
       type: 'string',
       options: {
-        list: [
-          {title: 'Digital', value: 'digital'},
-          {title: 'Traditional', value: 'traditional'},
-          {title: 'Animation', value: 'animation'},
-        ],
+        list: CATEGORIES.map(({title, slug}) => ({title, value: slug})),
         layout: 'radio',
       },
       validation: (Rule) => Rule.required(),

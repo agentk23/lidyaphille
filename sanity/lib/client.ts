@@ -6,5 +6,7 @@ export const client = createClient({
   projectId,
   dataset,
   apiVersion,
-  useCdn: true, // Set to false if statically generating pages, using ISR or tag-based revalidation
+  // Gallery pages are statically generated (generateStaticParams), so fetches
+  // happen at build time — hit the live API, not a possibly-stale CDN.
+  useCdn: false,
 })

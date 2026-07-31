@@ -1,17 +1,19 @@
-// lib/sanity.ts
 import { client } from "@/sanity/lib/client";
 import { groq } from "next-sanity";
 
-export async function getWorkImages(category: string) {
+export type WorkImage = {
+  _id: string;
+  title: string;
+  imageUrl: string;
+  description?: string;
+};
+
+export async function getWorkImages(category: string): Promise<WorkImage[]> {
   const query = groq`*[_type == "workImage" && category == $category] {
     _id,
     title,
     "imageUrl": image.asset->url,
     description
   }`;
-  const images = await client.fetch(query, { category });
-  console.log(images);
-  return images;
+  return client.fetch(query, { category });
 }
-
-export default getWorkImages;

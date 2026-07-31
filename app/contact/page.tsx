@@ -3,11 +3,20 @@
 import { useState } from "react";
 import Image from "next/image";
 
+const CONTACT_EMAIL = "lidyaphille@gmail.com";
+const MAIL_SUBJECT = "Inquiry from Art Portfolio";
+
+// Vertical placement of the decorative artworks in the left column.
+const ARTWORK_POSITIONS = ["top-[3%]", "top-[35%]", "bottom-[3%]"];
+
 export default function ContactPage() {
   const [message, setMessage] = useState("");
+  const canSend = message.trim().length > 0;
 
-
-  const mailtoLink = `mailto:lidyaphille@gmail.com?subject=Inquiry from Art Portfolio&body=${encodeURIComponent(message)}`;
+  const handleSend = () => {
+    const mailtoLink = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(MAIL_SUBJECT)}&body=${encodeURIComponent(message)}`;
+    window.location.href = mailtoLink;
+  };
 
   return (
     <div className="min-h-screen w-full bg-stone-100 p-4 md:p-8 flex items-center justify-center overflow-hidden">
@@ -15,36 +24,20 @@ export default function ContactPage() {
         {/* =========================================
             LEFT SECTION: 3 Background Pictures
         ========================================= */}
-        <div className="hidden md:flex relative h-full  items-center justify-center min-h-150">
-          {/* Top Row Image */}
-          <div className="absolute top-[3%] left-[10%] w-72 aspect-[4/3] transform z-20 hover:scale-105 transition-transform cursor-pointer">
-            <Image
-              src="/lilmonster.png"
-              alt="Lil Monster artwork"
-              fill
-              className="object-contain"
-            />
-          </div>
-
-          {/* Middle Row Image */}
-          <div className="absolute top-[35%] left-[10%] w-72 aspect-[4/3] z-20 hover:scale-105 transition-transform cursor-pointer">
-            <Image
-              src="/lilmonster.png"
-              alt="Lil Monster artwork"
-              fill
-              className="object-fill"
-            />
-          </div>
-
-          {/* Bottom Row Image */}
-          <div className="absolute bottom-[3%] left-[10%] w-72 aspect-[4/3] z-20 hover:scale-105 transition-transform cursor-pointer">
-            <Image
-              src="/lilmonster.png"
-              alt="Lil Monster artwork"
-              fill
-              className="object-fill"
-            />
-          </div>
+        <div className="md:flex md:relative absolute h-full items-center justify-center min-h-150">
+          {ARTWORK_POSITIONS.map((position) => (
+            <div
+              key={position}
+              className={`absolute ${position} left-[10%] w-72 aspect-4/3 z-20 hover:scale-105 transition-transform cursor-pointer`}
+            >
+              <Image
+                src="/lilmonster.png"
+                alt="Lil Monster artwork"
+                fill
+                className="object-contain"
+              />
+            </div>
+          ))}
         </div>
 
         {/* =========================================
@@ -52,7 +45,7 @@ export default function ContactPage() {
         ========================================= */}
         <div className="relative flex items-center justify-center h-full w-full">
           {/* Background Top Right */}
-          <div className="hidden md:block absolute md:-bottom-[25%] xl:-bottom-[35%] md:right-[25%] xl:right-[30%]  md:w-64   md:h-[70%]  xl:h-[90%] rotate-90 transform z-10 opacity-70">
+          <div className="hidden md:block absolute md:-bottom-[25%] xl:-bottom-[35%] md:right-[25%] xl:right-[30%] md:w-64 md:h-[70%] xl:h-[90%] rotate-90 transform z-10 opacity-70">
             <Image
               src="/background-motif.png"
               alt="Background Motif"
@@ -62,7 +55,7 @@ export default function ContactPage() {
           </div>
 
           {/* Background Bottom Left */}
-          <div className="hidden md:block absolute md:bottom-[5%] xl:bottom-[5%] md:-left-[12%] xl:-left-[15%] md:w-64   md:h-[90%]  transform  z-10 opacity-70">
+          <div className="hidden md:block absolute md:bottom-[5%] xl:bottom-[5%] md:-left-[12%] xl:-left-[15%] md:w-64 md:h-[90%] transform z-10 opacity-70">
             <Image
               src="/background-motif.png"
               alt="Background Motif"
@@ -72,7 +65,7 @@ export default function ContactPage() {
           </div>
 
           {/* Foreground Interactive Notepad */}
-          <div className="relative z-20 h-full w-full ">
+          <div className="relative z-20 h-full w-full">
             {/* The Specific Menu Background Image */}
             <Image
               src="/menu-bg.png"
@@ -94,16 +87,17 @@ export default function ContactPage() {
               />
 
               <div className="mt-4 flex justify-end">
-                <a
-                  href={mailtoLink}
-                  className={`px-3 py-2 xl:px-8 xl:py-3  rounded-md shadow transition-colors ${
-                    message.trim().length === 0
-                      ? "bg-gray-300 text-gray-500 cursor-not-allowed pointer-events-none opacity-50"
-                      : "bg-gray-800 text-white hover:bg-black cursor-pointer opacity-90 hover:opacity-100"
+                <button
+                  onClick={handleSend}
+                  disabled={!canSend}
+                  className={`px-3 py-2 xl:px-8 xl:py-3 rounded-md shadow transition-colors ${
+                    canSend
+                      ? "bg-gray-800 text-white hover:bg-black cursor-pointer opacity-90 hover:opacity-100"
+                      : "bg-gray-300 text-gray-500 cursor-not-allowed opacity-50"
                   }`}
                 >
                   Send
-                </a>
+                </button>
               </div>
             </div>
           </div>
