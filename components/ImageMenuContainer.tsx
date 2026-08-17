@@ -29,6 +29,9 @@ export const ImageMenuContainer = ({
           src="/menu-bg.png" // Replace with your PNG path
           alt="Menu Background"
           fill
+          // Callers size this container themselves; the widest of them caps out
+          // around half the viewport.
+          sizes="(max-width: 640px) 90vw, (max-width: 1024px) 55vw, 50vw"
           className="transition-transform duration-700 hover:scale-100 "
           priority
         />

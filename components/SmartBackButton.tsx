@@ -74,6 +74,7 @@ export const SmartBackButton = () => {
           src="/back-hand.png"
           alt="Navigation Icon"
           fill
+          sizes="(max-width: 640px) 64px, 80px"
           loading="eager"
           className="object-contain transition-transform duration-500 ease-in-out"
           priority

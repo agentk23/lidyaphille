@@ -30,7 +30,8 @@ const CategoryCard = ({ category }: { category: Category }) => {
                 src={category.image}
                 alt={category.title}
                 fill
-                className="object-cover"
+                sizes="(max-width: 768px) 256px, 400px"
+                className="object-fill"
               />
             </div>
           </div>
@@ -48,6 +49,7 @@ export default function WorksPage() {
           src="/2ndbg.jpg"
           alt="Works Background"
           fill
+          sizes="100vw"
           className="object-cover opacity-80"
           priority
         />

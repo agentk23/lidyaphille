@@ -31,6 +31,7 @@ export default function Home() {
             src="/2ndbg.jpg"
             alt="Page Background"
             fill
+            sizes="90vw"
             className="object-cover"
             priority
           />

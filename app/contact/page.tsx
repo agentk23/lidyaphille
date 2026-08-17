@@ -34,6 +34,7 @@ export default function ContactPage() {
                 src="/lilmonster.png"
                 alt="Lil Monster artwork"
                 fill
+                sizes="288px"
                 className="object-contain"
               />
             </div>
@@ -50,6 +51,7 @@ export default function ContactPage() {
               src="/background-motif.png"
               alt="Background Motif"
               fill
+              sizes="256px"
               className="object-cover"
             />
           </div>
@@ -60,6 +62,7 @@ export default function ContactPage() {
               src="/background-motif.png"
               alt="Background Motif"
               fill
+              sizes="256px"
               className="object-cover"
             />
           </div>
@@ -71,6 +74,7 @@ export default function ContactPage() {
               src="/menu-bg.png"
               alt="Contact Menu Background"
               fill
+              sizes="(max-width: 768px) 100vw, 624px"
               className="object-cover"
               priority
             />
