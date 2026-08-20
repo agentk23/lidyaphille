@@ -47,7 +47,10 @@ export const ParallaxGallery = ({
         />
       </motion.div>
       <div className="relative z-10 pt-32 px-8 max-w-7xl mx-auto">
-        <h1 className="md:text-4xl text-3xl  text-white mb-24 uppercase tracking-tighter text-center">
+        <h1
+          className="md:text-4xl text-3xl  text-white mb-24 uppercase tracking-tighter text-center"
+          style={{ viewTransitionName: `work-title-${category}` }}
+        >
           {category}
         </h1>
 

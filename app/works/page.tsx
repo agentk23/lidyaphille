@@ -22,10 +22,17 @@ const CategoryCard = ({ category }: { category: Category }) => {
       >
         <ImageMenuContainer className="h-[40vh] md:h-[50vh]">
           <div className="flex flex-col gap-6 h-full items-center justify-center md:p-15 sm:p-20 p-16">
-            <h2 className="absolute top-15 text-xl md:text-2xl font-bold text-black uppercase tracking-widest drop-shadow-lg">
+            <h2
+              className="absolute top-15 text-xl md:text-2xl font-bold text-black uppercase tracking-widest drop-shadow-lg"
+              style={{ viewTransitionName: `work-title-${category.slug}` }}
+            >
               {category.title}
             </h2>
-            <div className="relative w-64 md:w-100 h-64 rounded-lg overflow-hidden shadow-lg border border-white/20">
+            {/* Shared element: morphs into the category page's hero. */}
+            <div
+              className="relative w-64 md:w-100 h-64 rounded-lg overflow-hidden shadow-lg border border-white/20"
+              style={{ viewTransitionName: `work-${category.slug}` }}
+            >
               <Image
                 src={category.image}
                 alt={category.title}
