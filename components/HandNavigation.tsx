@@ -56,7 +56,7 @@ export const InteractiveNav = () => {
           {activeIndex === index && (
             <motion.div
               layoutId="hand-pointer" // Magic prop: animates between different parents
-              className="absolute z-10 top-1/2 -left-10 md:-left-12 -translate-y-1/2 pointer-events-none"
+              className="absolute z-10 top-1/2 -left-10 md:-left-15 -translate-y-1/2 pointer-events-none scale-80 md:scale-120"
               transition={{
                 type: "spring",
                 stiffness: 250,
@@ -69,7 +69,7 @@ export const InteractiveNav = () => {
                 alt="Pointer"
                 width={64}
                 height={64}
-                className="left-1/2 -translate-x-1/2"
+                className="left-1/2 -translate-x-1/2 "
               />
             </motion.div>
           )}

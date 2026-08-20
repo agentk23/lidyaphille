@@ -6,11 +6,17 @@ import Image from "next/image";
 const CONTACT_EMAIL = "lidyaphille@gmail.com";
 const MAIL_SUBJECT = "Inquiry from Art Portfolio";
 
-// Vertical placement of the decorative artworks in the left column.
-const ARTWORK_POSITIONS = ["top-[3%]", "top-[35%]", "bottom-[3%]"];
+// Vertical placement of the decorative artworks in the left column, plus the
+// tilt each one takes while the visitor is writing.
+const ARTWORKS = [
+  { position: "top-[3%]", focusedTilt: "rotate-y-180 translate-x-30 rotate-x-20" },
+  { position: "top-[35%]", focusedTilt: "rotate-y-180 translate-x-50" },
+  { position: "bottom-[3%]", focusedTilt: "rotate-y-180 translate-x-40" },
+];
 
 export default function ContactPage() {
   const [message, setMessage] = useState("");
+  const [isWriting, setIsWriting] = useState(false);
   const canSend = message.trim().length > 0;
 
   const handleSend = () => {
@@ -25,10 +31,12 @@ export default function ContactPage() {
             LEFT SECTION: 3 Background Pictures
         ========================================= */}
         <div className="md:flex md:relative absolute h-full items-center justify-center min-h-150">
-          {ARTWORK_POSITIONS.map((position) => (
+          {ARTWORKS.map(({ position, focusedTilt }) => (
             <div
               key={position}
-              className={`absolute ${position} left-[10%] w-72 aspect-4/3 z-20 hover:scale-105 transition-transform cursor-pointer`}
+              className={`absolute ${position} left-[10%] w-72 aspect-4/3 z-20 hover:scale-105 hover:-translate-x-20 transition-transform duration-700 ${
+                isWriting ? `${focusedTilt} scale-101` : ""
+              }`}
             >
               <Image
                 src="/lilmonster.png"
@@ -88,6 +96,8 @@ export default function ContactPage() {
                 placeholder="Write your message here..."
                 value={message}
                 onChange={(e) => setMessage(e.target.value)}
+                onFocus={() => setIsWriting(true)}
+                onBlur={() => setIsWriting(false)}
               />
 
               <div className="mt-4 flex justify-end">

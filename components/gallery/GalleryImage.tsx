@@ -3,6 +3,7 @@
 import { useEffect, useRef } from "react";
 import Image from "next/image";
 import { getImageDimensions } from "@/lib/sanity";
+import { sanityImageLoader } from "@/lib/sanityImageLoader";
 
 /** Aspect ratio used when a URL carries no dimensions. */
 const FALLBACK_RATIO = 3 / 4;
@@ -20,23 +21,37 @@ const TILE_SIZES = {
   wide: "(max-width: 1280px) calc(100vw - 4rem), 790px",
 };
 
-export const GalleryImage = ({
-  src,
-  alt,
-  onClick,
-}: {
-  src: string;
-  alt: string;
-  onClick: () => void;
-}) => {
-  const itemRef = useRef<HTMLDivElement>(null);
-  const contentRef = useRef<HTMLDivElement>(null);
-
+/**
+ * Layout facts for a tile, derived from the image URL. Exported so ArtworkModal
+ * can request the exact variant the grid already fetched (same loader + same
+ * `sizes` string = same URL = browser cache hit) as its instant underlay.
+ */
+export function getTileLayout(src: string) {
   const dimensions = getImageDimensions(src);
   const ratio = dimensions
     ? dimensions.width / dimensions.height
     : FALLBACK_RATIO;
   const isWide = ratio >= WIDE_RATIO;
+  return { ratio, isWide, sizes: isWide ? TILE_SIZES.wide : TILE_SIZES.narrow };
+}
+
+export const GalleryImage = ({
+  src,
+  alt,
+  lqip,
+  onClick,
+  onError,
+}: {
+  src: string;
+  alt: string;
+  lqip?: string;
+  onClick: () => void;
+  onError?: () => void;
+}) => {
+  const itemRef = useRef<HTMLDivElement>(null);
+  const contentRef = useRef<HTMLDivElement>(null);
+
+  const { ratio, isWide, sizes } = getTileLayout(src);
 
   useMasonrySpan(itemRef, contentRef);
 
@@ -52,10 +67,13 @@ export const GalleryImage = ({
           <Image
             src={src}
             alt={alt}
+            loader={sanityImageLoader}
             fill
-            sizes={isWide ? TILE_SIZES.wide : TILE_SIZES.narrow}
-            className="object-cover cursor-pointer transition-transform duration-700 hover:scale-101"
+            sizes={sizes}
+            className="object-cover cursor-pointer transition-transform shadow-4xl duration-700 hover:scale-101"
             onClick={onClick}
+            onError={onError}
+            {...(lqip && { placeholder: "blur" as const, blurDataURL: lqip })}
           />
         </div>
       </div>

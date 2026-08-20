@@ -1,9 +1,35 @@
 "use client";
 
-import { useCallback, useEffect } from "react";
+import { useCallback, useEffect, useState } from "react";
 import Image from "next/image";
 import type { WorkImage } from "@/lib/sanity";
+import { sanityImageLoader } from "@/lib/sanityImageLoader";
+import { getTileLayout } from "./GalleryImage";
 import { ModalArrow } from "./ModalArrow";
+
+/**
+ * The full-resolution layer, fading in over the cached-tile underlay once the
+ * file has actually loaded. Keyed by artwork in ArtworkModal, so every
+ * navigation remounts it with a fresh transparent state.
+ */
+const FullSizeImage = ({ artwork }: { artwork: WorkImage }) => {
+  const [loaded, setLoaded] = useState(false);
+
+  return (
+    <Image
+      src={artwork.imageUrl}
+      alt={artwork.title}
+      loader={sanityImageLoader}
+      fill
+      onLoad={() => setLoaded(true)}
+      className={`object-contain transition-opacity duration-500 ease-out ${
+        loaded ? "opacity-100" : "opacity-0"
+      }`}
+      priority
+      sizes="(max-width: 640px) 70vw, (max-width: 768px) 80vw, (max-width: 1024px) 80vw, (max-width: 1280px) 70vw, 1600px"
+    />
+  );
+};
 
 export const ArtworkModal = ({
   images,
@@ -66,16 +92,33 @@ export const ArtworkModal = ({
 
       {/* FULL-SIZE MAIN IMAGE CONTAINER */}
       <div
-        className="relative w-full h-full max-w-[80vw] max-h-[85vh] md:max-w-[85vw] lg:max-w-6xl md:max-h-[90vh] xl:max-w-7xl xl:max-h-[92vh]"
+        className="relative w-full h-full max-w-[80vw] max-h-[85vh] md:max-w-[85vw] lg:max-w-6xl md:max-h-[90vh] xl:max-w-7xl xl:max-h-[70vh]"
         onClick={(e) => e.stopPropagation()}
       >
+        {/* Underlay: the exact variant the grid tile already fetched (same
+            loader + same sizes = same URL), painted straight from the browser
+            cache so something sharp shows while the full-size image loads. */}
+        {/* Keyed by artwork so navigation mounts fresh <img> elements — a
+            reused element keeps showing the previous artwork's bitmap until
+            the new src decodes. */}
         <Image
+          key={`underlay-${selectedArtwork._id}`}
           src={selectedArtwork.imageUrl}
-          alt={selectedArtwork.title}
+          alt=""
+          aria-hidden
+          loader={sanityImageLoader}
           fill
-          className="object-scale-down transition-opacity duration-300"
+          className="object-contain"
           priority
-          sizes="(max-width: 640px) 70vw, (max-width: 768px) 80vw, (max-width: 1024px) 80vw, (max-width: 1280px) 70vw, 1600px"
+          sizes={getTileLayout(selectedArtwork.imageUrl).sizes}
+          {...(selectedArtwork.lqip && {
+            placeholder: "blur" as const,
+            blurDataURL: selectedArtwork.lqip,
+          })}
+        />
+        <FullSizeImage
+          key={`full-${selectedArtwork._id}`}
+          artwork={selectedArtwork}
         />
       </div>
     </div>

@@ -24,6 +24,13 @@ export const ParallaxGallery = ({
 
   const [selectedArtwork, setSelectedArtwork] = useState<WorkImage | null>(null);
 
+  // Images whose CDN request failed (e.g. 400 for a broken asset) get pulled
+  // from the grid and the modal instead of rendering as broken tiles.
+  const [failedIds, setFailedIds] = useState<ReadonlySet<string>>(new Set());
+  const visibleImages =
+    images?.filter((image) => image.imageUrl && !failedIds.has(image._id)) ??
+    [];
+
   return (
     <div
       ref={containerRef}
@@ -40,26 +47,33 @@ export const ParallaxGallery = ({
         />
       </motion.div>
       <div className="relative z-10 pt-32 px-8 max-w-7xl mx-auto">
-        <h1 className="text-6xl md:text-4xl font-bold text-white mb-24 uppercase tracking-tighter text-center">
+        <h1 className="md:text-4xl text-3xl  text-white mb-24 uppercase tracking-tighter text-center">
           {category}
         </h1>
 
         {/* Masonry: fine-grained rows that each tile spans according to its
             height, with dense packing to backfill what wide tiles leave over. */}
         <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 grid-flow-dense auto-rows-[8px] gap-x-16 pb-32">
-          {images?.map((image) => (
+          {visibleImages.map((image) => (
             <GalleryImage
               key={image._id}
               src={image.imageUrl}
               alt={image.title}
+              lqip={image.lqip}
               onClick={() => setSelectedArtwork(image)}
+              onError={() => {
+                setFailedIds((prev) => new Set(prev).add(image._id));
+                setSelectedArtwork((current) =>
+                  current?._id === image._id ? null : current,
+                );
+              }}
             />
           ))}
         </div>
       </div>
       {selectedArtwork && (
         <ArtworkModal
-          images={images}
+          images={visibleImages}
           selectedArtwork={selectedArtwork}
           onSelect={setSelectedArtwork}
           onClose={() => setSelectedArtwork(null)}
